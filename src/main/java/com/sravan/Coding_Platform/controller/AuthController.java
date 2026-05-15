@@ -1,6 +1,8 @@
 package com.sravan.Coding_Platform.controller;
 
+import com.sravan.Coding_Platform.dto.LoginRequest;
 import com.sravan.Coding_Platform.dto.RegisterRequest;
+import com.sravan.Coding_Platform.model.User;
 import com.sravan.Coding_Platform.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,4 +23,10 @@ public class AuthController {
         userService.registerUser(request);
         return "User Registration Successful..";
     }
+
+    @PostMapping("/login")
+    public String login(@Valid @RequestBody LoginRequest request){
+        return userService.loginUser(request);
+    }
 }
+
