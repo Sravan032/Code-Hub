@@ -4,6 +4,8 @@ import com.sravan.Coding_Platform.dto.LoginRequest;
 import com.sravan.Coding_Platform.dto.RegisterRequest;
 import com.sravan.Coding_Platform.model.User;
 import com.sravan.Coding_Platform.repository.UserRepository;
+import com.sravan.Coding_Platform.security.JwtUtil;
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private JwtUtil jwtUtil;
 
     public User registerUser(RegisterRequest request){
         User user = new User();
@@ -38,7 +42,8 @@ public class UserService {
         if(!isPasswordMatch){
             return "Incorrect Password.";
         }
-        return "Login Successful";
+        String token = jwtUtil.generateToken(request.getEmail());
+        return token;
     }
 }
 
