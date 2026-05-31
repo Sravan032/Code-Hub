@@ -1,6 +1,8 @@
 package com.sravan.Coding_Platform.dto;
 
-public class LeaderboardResponse {
+import java.io.Serializable;
+
+public class LeaderboardResponse implements Serializable {
     private String email;
     private long solvedCount;
 
@@ -17,7 +19,7 @@ public class LeaderboardResponse {
         this.email=email;
     }
     public long getSolvedCount(){
-        return getSolvedCount();
+        return solvedCount;
     }
     public void setSolvedCount(long solvedCount){
         this.solvedCount=solvedCount;
