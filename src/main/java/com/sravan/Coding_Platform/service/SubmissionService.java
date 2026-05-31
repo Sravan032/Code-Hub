@@ -8,6 +8,7 @@ import com.sravan.Coding_Platform.repository.ProblemRepository;
 import com.sravan.Coding_Platform.repository.SubmissionRepository;
 import com.sravan.Coding_Platform.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -24,6 +25,7 @@ public class SubmissionService {
     @Autowired
     private UserRepository userRepository;
 
+    @CacheEvict(value = "leaderboard", allEntries = true)
     public Submission createSubmission(SubmissionRequest request, String email){
         User user = userRepository.findByEmail(email)
                 .orElseThrow(()-> new RuntimeException("User not found!"));

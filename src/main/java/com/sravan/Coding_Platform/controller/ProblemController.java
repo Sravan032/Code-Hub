@@ -5,6 +5,7 @@ import com.sravan.Coding_Platform.model.Problem;
 import com.sravan.Coding_Platform.service.ProblemService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class ProblemController {
     @Autowired
     private ProblemService problemService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public Problem createProblem(@Valid @RequestBody ProblemRequest request){
         return problemService.createProblem(request);
