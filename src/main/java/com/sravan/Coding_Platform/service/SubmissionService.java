@@ -25,6 +25,9 @@ public class SubmissionService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private NotificationService notificationService;
+
     @CacheEvict(value = "leaderboard", allEntries = true)
     public Submission createSubmission(SubmissionRequest request, String email){
         User user = userRepository.findByEmail(email)
@@ -41,7 +44,10 @@ public class SubmissionService {
         submission.setUser(user);
         submission.setProblem(problem);
 
-        return submissionRepository.save(submission);
+        Submission savedSubmission = submissionRepository.save(submission);
+        notificationService.sendSubmissionNotification(email);
+
+        return savedSubmission;
     }
 
     public List<Submission> getUserSubmissions(String email){
