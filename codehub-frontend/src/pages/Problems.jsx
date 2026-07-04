@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import { Link } from "react-router-dom";
 
 function Problems() {
 
@@ -14,6 +15,7 @@ function Problems() {
         try {
 
             const token = localStorage.getItem("token");
+            console.log("Token:", token);
 
             const response = await api.get(
                 "/problems",
@@ -24,10 +26,13 @@ function Problems() {
                 }
             );
 
+            console.log("Problems:", response.data);
+
             setProblems(response.data);
 
         } catch (error) {
 
+            console.log("Error:", error.response);
             console.log(error);
 
         }
@@ -42,7 +47,11 @@ function Problems() {
 
                 <div key={problem.id}>
 
-                    <h3>{problem.title}</h3>
+                    <h3>
+                        <Link to={`/problems/${problem.id}`}>
+                            {problem.title}
+                        </Link>
+                    </h3>
 
                     <p>{problem.description}</p>
 
