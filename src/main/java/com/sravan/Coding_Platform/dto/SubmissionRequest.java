@@ -1,13 +1,14 @@
 package com.sravan.Coding_Platform.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class SubmissionRequest {
     @NotBlank(message = "Code is required.")
     private String code;
     @NotBlank(message = "Language is required.")
     private String language;
-    @NotBlank(message = "Problem ID is required.")
+    @NotNull(message = "Problem ID is required.")
     private Long problemId;
 
     public SubmissionRequest() {
