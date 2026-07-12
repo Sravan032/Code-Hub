@@ -9,6 +9,14 @@ function Dashboard() {
             <Link to="/submissions">
                 My Submissions
             </Link>
+            <br></br>
+
+            <Link to="/leaderboard">
+                Leaderboard
+            </Link>
+            <Link to="/progress">
+                My Progress
+            </Link>
         </div>
     );
 }

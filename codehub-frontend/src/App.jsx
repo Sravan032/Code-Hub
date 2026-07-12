@@ -6,6 +6,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Problems from "./pages/Problems";
 import ProblemDetails from "./pages/ProblemDetails";
 import MySubmissions from "./pages/MySubmissions";
+import Progress from "./pages/Progress";
+import Leaderboard from "./pages/Leaderboard";
 
 function App() {
     return (
@@ -32,6 +34,14 @@ function App() {
                     }
                 />
                 <Route
+                    path="/leaderboard"
+                    element={
+                        <ProtectedRoute>
+                            <Leaderboard />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
                     path="/problems/:id"
                     element={
                         <ProtectedRoute>
@@ -45,6 +55,15 @@ function App() {
                     element={
                         <ProtectedRoute>
                             <MySubmissions />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/progress"
+                    element={
+                        <ProtectedRoute>
+                            <Progress />
                         </ProtectedRoute>
                     }
                 />
